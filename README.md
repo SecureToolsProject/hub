@@ -9,8 +9,9 @@ Secure Tools products. Products and libraries remain independently maintained an
 
 ## Status
 
-The repository now includes its information architecture and standardized product disclosure
-model, but it is not released as the production Hub.
+The repository now includes its information architecture, standardized product disclosure
+model, and a production-polished visual system aligned with Secure Tools Web Utilities, but it
+is not released as the production Hub.
 Production migration has not happened: `securetools.app` remains assigned to Secure Tools Web
 Utilities. The configured workflow publishes `main` only to the Cloudflare-managed `pages.dev`
 validation target.
@@ -20,5 +21,6 @@ validation target.
 - [Architecture](docs/architecture.md)
 - [Privacy model](docs/privacy-model.md)
 - [Deployment transparency](docs/deployment.md)
+- [H2.2 quality assurance](docs/h2.2-qa.md)
 
 The static site can be previewed by serving `public/` with any local static file server.
