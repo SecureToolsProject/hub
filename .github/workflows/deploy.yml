@@ -1,0 +1,72 @@
+name: Deploy Hub
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: hub-production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy static Hub
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout source
+        # actions/checkout v6.0.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+
+      - name: Validate static deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          required_files=(
+            public/index.html
+            public/404.html
+          )
+
+          for file in "${required_files[@]}"; do
+            if [[ ! -f "$file" ]]; then
+              echo "::error file=$file::Required static file is missing"
+              exit 1
+            fi
+          done
+
+          forbidden_paths=(
+            CNAME
+            public/CNAME
+            _worker.js
+            public/_worker.js
+            functions
+            public/functions
+          )
+
+          for path in "${forbidden_paths[@]}"; do
+            if [[ -e "$path" ]]; then
+              echo "::error file=$path::Server-side or custom-domain artifact is not allowed"
+              exit 1
+            fi
+          done
+
+          echo "Validated static deployment output: public/"
+
+      - name: Deploy to Cloudflare Pages
+        # cloudflare/wrangler-action v4.0.0
+        uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy public --project-name=secure-tools-hub --branch=main --commit-hash=${{ github.sha }}
