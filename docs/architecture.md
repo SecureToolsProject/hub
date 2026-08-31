@@ -30,3 +30,23 @@ external asset pipeline, or central runtime dependency.
 The Hub intentionally has no plugin framework. Projects integrate through documented links
 and shared principles rather than executable plugins or a common application shell. This
 keeps the catalog operationally separate from the software it describes.
+
+## Product disclosure contract
+
+The Hub uses a consistent, human-readable disclosure contract for products and libraries:
+
+- name and concise description;
+- type and current status;
+- repository and primary entry point, when established;
+- platform;
+- processing location and boundaries;
+- network behavior;
+- storage behavior;
+- telemetry behavior;
+- license;
+- version, where applicable; and
+- privacy or technical documentation.
+
+The contract does not require unsupported certainty. Fields that are not established may be
+marked `Not finalized`, `Not yet released`, or `To be documented before release`. The linked
+product repository and its release-specific documentation remain the source of truth.
