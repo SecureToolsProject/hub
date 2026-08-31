@@ -11,12 +11,13 @@ Secure Tools products. Products and libraries remain independently maintained an
 
 The repository is at its initial foundation stage and is not released as the production Hub.
 Production migration has not happened: `securetools.app` remains assigned to Secure Tools Web
-Utilities, and no hosting or deployment configuration is included here.
+Utilities. The configured workflow publishes `main` only to the Cloudflare-managed `pages.dev`
+validation target.
 
 ## Documentation
 
 - [Architecture](docs/architecture.md)
 - [Privacy model](docs/privacy-model.md)
-- [Deployment model](docs/deployment.md)
+- [Deployment transparency](docs/deployment.md)
 
 The static site can be previewed by serving `public/` with any local static file server.
