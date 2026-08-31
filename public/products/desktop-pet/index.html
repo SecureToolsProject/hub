@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Product disclosure for Secure Desktop Pet, an independently maintained desktop application in development.">
+    <title>Secure Desktop Pet — Secure Tools</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="wordmark" href="/">Secure Tools</a>
+        <nav aria-label="Primary navigation">
+          <ul class="nav-list">
+            <li><a href="/products/" aria-current="page">Products</a></li>
+            <li><a href="/libraries/">Libraries</a></li>
+            <li><a href="/principles/">Principles</a></li>
+            <li><a href="/project/">Project</a></li>
+            <li><a href="https://github.com/SecureToolsProject">GitHub</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="page-hero" aria-labelledby="page-title">
+        <div class="container measure">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Home</a></li>
+              <li><a href="/products/">Products</a></li>
+              <li aria-current="page">Desktop Pet</li>
+            </ol>
+          </nav>
+          <div class="badge-row">
+            <span class="badge">Desktop application</span>
+            <span class="badge badge-status">In development</span>
+          </div>
+          <h1 id="page-title">Secure Desktop Pet</h1>
+          <p class="lede">
+            A small local desktop companion maintained independently from Secure Tools Web
+            Utilities. It demonstrates that the ecosystem can include native desktop software
+            without placing it inside the browser product.
+          </p>
+          <a class="text-link" href="https://github.com/SecureToolsProject/deskPet">View development source</a>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="disclosure-title">
+        <div class="container">
+          <div class="section-heading measure">
+            <p class="eyebrow">Product disclosure</p>
+            <h2 id="disclosure-title">Development-state information</h2>
+            <p>Release-specific guarantees remain subject to final product documentation.</p>
+          </div>
+          <dl class="disclosure-grid">
+            <div class="disclosure-item">
+              <dt>Type</dt>
+              <dd>Desktop application</dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Status</dt>
+              <dd>In development<small>No public release is currently listed.</small></dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Version</dt>
+              <dd>Not yet released</dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Platform</dt>
+              <dd>Windows 11 primary development target<small>A public support matrix is not finalized.</small></dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Processing</dt>
+              <dd>Desktop-local<small>The current implementation runs as a local Tauri application.</small></dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Network behavior</dt>
+              <dd>Current development runtime is local-only<small>Current source documentation describes no background network activity. Release behavior must be re-documented before release.</small></dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Storage</dt>
+              <dd>Not finalized<small>The current documented scope does not include saved position or settings.</small></dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Telemetry</dt>
+              <dd>None in current development source<small>The release disclosure will take precedence when available.</small></dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>License</dt>
+              <dd>Not specified<small>No public license file is currently present in the repository.</small></dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section section-tinted" aria-labelledby="overview-title">
+        <div class="container content-sections">
+          <section class="content-section" aria-labelledby="overview-title">
+            <p class="eyebrow">Overview</p>
+            <h2 id="overview-title">A desktop product with its own lifecycle</h2>
+            <p>
+              The current project is a lightweight always-on-top 2D companion. Its repository
+              owns desktop behavior, packaging decisions, testing, and eventual release terms.
+              The Hub does not assign it a release date or download link.
+            </p>
+          </section>
+          <section class="content-section" aria-labelledby="privacy-title">
+            <h2 id="privacy-title">Local operation is a bounded statement</h2>
+            <p>
+              Desktop-local processing does not automatically prove that every future release
+              has zero network activity. The current development documentation describes no
+              accounts, cloud services, updater, analytics, telemetry, or background runtime
+              network access; exact release behavior must be disclosed again before release.
+            </p>
+          </section>
+          <section class="content-section" aria-labelledby="documentation-title">
+            <h2 id="documentation-title">Source and technical documentation</h2>
+            <ul class="link-list">
+              <li><a href="https://github.com/SecureToolsProject/deskPet">Source repository</a></li>
+              <li><a href="https://github.com/SecureToolsProject/deskPet/blob/main/README.md">Current project documentation</a></li>
+              <li><a href="https://github.com/SecureToolsProject/deskPet/tree/main/docs">Technical notes</a></li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>Secure Tools Project Hub</p>
+        <nav aria-label="Project links">
+          <ul class="footer-links">
+            <li><a href="https://github.com/SecureToolsProject">GitHub organization</a></li>
+            <li><a href="https://github.com/SecureToolsProject/hub">Hub source</a></li>
+            <li><a href="/principles/">Principles</a></li>
+            <li><a href="https://github.com/SecureToolsProject/hub/blob/main/docs/deployment.md">Deployment transparency</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

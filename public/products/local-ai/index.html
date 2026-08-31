@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Planned Secure Local AI product category and the disclosure requirements that must be resolved before release.">
+    <title>Secure Local AI — Secure Tools</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="wordmark" href="/">Secure Tools</a>
+        <nav aria-label="Primary navigation">
+          <ul class="nav-list">
+            <li><a href="/products/" aria-current="page">Products</a></li>
+            <li><a href="/libraries/">Libraries</a></li>
+            <li><a href="/principles/">Principles</a></li>
+            <li><a href="/project/">Project</a></li>
+            <li><a href="https://github.com/SecureToolsProject">GitHub</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="page-hero" aria-labelledby="page-title">
+        <div class="container measure">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Home</a></li>
+              <li><a href="/products/">Products</a></li>
+              <li aria-current="page">Local AI</li>
+            </ol>
+          </nav>
+          <div class="badge-row">
+            <span class="badge">Local AI application</span>
+            <span class="badge badge-status">Planned</span>
+          </div>
+          <h1 id="page-title">Secure Local AI</h1>
+          <p class="lede">
+            A planned product category for local AI software. This page establishes disclosure
+            requirements without presenting design considerations as implemented features.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="disclosure-title">
+        <div class="container">
+          <div class="section-heading measure">
+            <p class="eyebrow">Product disclosure</p>
+            <h2 id="disclosure-title">Not yet finalized</h2>
+            <p>Exact behavior must be documented before any release.</p>
+          </div>
+          <dl class="disclosure-grid">
+            <div class="disclosure-item">
+              <dt>Type</dt>
+              <dd>Local AI application</dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Status</dt>
+              <dd>Planned<small>No public release or implementation is represented here.</small></dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Version</dt>
+              <dd>Not yet released</dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Platform</dt>
+              <dd>Not finalized</dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Processing</dt>
+              <dd>Not finalized<small>Local inference is a design consideration, not a confirmed feature.</small></dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Network behavior</dt>
+              <dd>Not finalized<small>Model acquisition and optional or required runtime requests must be disclosed.</small></dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Storage</dt>
+              <dd>Not finalized<small>Model files, browser cache, and application storage are design considerations.</small></dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>Telemetry</dt>
+              <dd>Not finalized</dd>
+            </div>
+            <div class="disclosure-item">
+              <dt>License</dt>
+              <dd>Not finalized</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section section-tinted" aria-labelledby="considerations-title">
+        <div class="container content-sections">
+          <section class="content-section" aria-labelledby="considerations-title">
+            <p class="eyebrow">Design considerations</p>
+            <h2 id="considerations-title">Questions the product must answer</h2>
+            <p>
+              A local AI application can have heavier runtime and storage requirements than a
+              browser utility. The product must document these boundaries without being folded
+              into the Web Utilities runtime.
+            </p>
+            <ul>
+              <li>Whether inference runs locally, remotely, or in a hybrid arrangement.</li>
+              <li>How models are acquired, verified, updated, and stored.</li>
+              <li>Whether browser cache, WebGPU, native runtimes, or application storage are required.</li>
+              <li>Which network requests are optional, required, or user-initiated.</li>
+              <li>Whether telemetry exists and how users can understand or control it.</li>
+            </ul>
+          </section>
+          <section class="content-section" aria-labelledby="source-title">
+            <h2 id="source-title">Source and documentation</h2>
+            <p class="notice">
+              <strong>Not publicly linked.</strong> No public Secure Local AI repository or
+              release documentation is currently available through the organization catalog.
+              Source, license, entry point, and technical documentation must be added when they
+              are established.
+            </p>
+          </section>
+          <section class="content-section" aria-labelledby="precedence-title">
+            <h2 id="precedence-title">Release disclosure will take precedence</h2>
+            <p>
+              These considerations are not promises about a future implementation. A product
+              release must publish its actual processing, network, storage, model, telemetry,
+              platform, and update behavior.
+            </p>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>Secure Tools Project Hub</p>
+        <nav aria-label="Project links">
+          <ul class="footer-links">
+            <li><a href="https://github.com/SecureToolsProject">GitHub organization</a></li>
+            <li><a href="https://github.com/SecureToolsProject/hub">Hub source</a></li>
+            <li><a href="/principles/">Principles</a></li>
+            <li><a href="https://github.com/SecureToolsProject/hub/blob/main/docs/deployment.md">Deployment transparency</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

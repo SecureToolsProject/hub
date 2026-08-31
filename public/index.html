@@ -3,22 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Secure Tools is a local-first, privacy-conscious software ecosystem.">
-    <title>Secure Tools</title>
-    <link rel="stylesheet" href="assets/css/main.css">
+    <meta name="description" content="Secure Tools is an ecosystem of independently maintained, local-first and privacy-conscious software projects.">
+    <title>Secure Tools — Local-first software ecosystem</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header class="site-header">
       <div class="container header-inner">
-        <a class="wordmark" href="./" aria-label="Secure Tools home">Secure Tools</a>
+        <a class="wordmark" href="/" aria-current="page">Secure Tools</a>
         <nav aria-label="Primary navigation">
           <ul class="nav-list">
-            <li><a href="#products">Products</a></li>
-            <li><a href="#libraries">Libraries</a></li>
-            <li><a href="#principles">Principles</a></li>
-            <li><a href="#project">Project</a></li>
+            <li><a href="/products/">Products</a></li>
+            <li><a href="/libraries/">Libraries</a></li>
+            <li><a href="/principles/">Principles</a></li>
+            <li><a href="/project/">Project</a></li>
+            <li><a href="https://github.com/SecureToolsProject">GitHub</a></li>
           </ul>
         </nav>
       </div>
@@ -27,110 +28,163 @@
     <main id="main-content">
       <section class="hero" aria-labelledby="hero-title">
         <div class="container measure">
-          <p class="eyebrow">A software ecosystem</p>
-          <h1 id="hero-title">Local-first tools with clear boundaries.</h1>
+          <p class="eyebrow">Secure Tools</p>
+          <h1 id="hero-title">Local-first software with clear privacy boundaries.</h1>
           <p class="lede">
-            Secure Tools is a collection of independently maintained, privacy-conscious
-            products and libraries. The project favors local processing where practical,
-            understandable network behavior, and implementations people can inspect.
+            An ecosystem of independently maintained browser tools, desktop applications,
+            local AI software, and reusable libraries designed to minimize unnecessary data
+            exposure.
           </p>
-        </div>
-      </section>
-
-      <section id="principles" class="section" aria-labelledby="principles-title">
-        <div class="container">
-          <div class="section-heading">
-            <p class="eyebrow">Principles</p>
-            <h2 id="principles-title">How the ecosystem is shaped</h2>
+          <div class="actions">
+            <a class="button" href="/products/">Explore products</a>
+            <a class="text-link" href="/principles/privacy/">Read the privacy model</a>
           </div>
-          <ul class="principle-grid">
-            <li>Local-first processing where practical</li>
-            <li>Minimal unnecessary data exposure</li>
-            <li>Transparent network behavior</li>
-            <li>Privacy-aware defaults</li>
-            <li>Auditable, open implementation where practical</li>
-            <li>Traceable deployment</li>
-          </ul>
-          <p class="note">
-            Exact privacy and network behavior varies by product and must be documented by
-            each project.
-          </p>
         </div>
       </section>
 
-      <section id="products" class="section section-tinted" aria-labelledby="products-title">
-        <div class="container">
+      <section class="section" aria-labelledby="definition-title">
+        <div class="container split-layout">
           <div class="section-heading">
+            <p class="eyebrow">What Secure Tools is</p>
+            <h2 id="definition-title">Independent projects, shared expectations</h2>
+          </div>
+          <div class="prose">
+            <p>
+              Secure Tools brings independently released software into one understandable
+              ecosystem. Projects favor local processing where it is practical and disclose
+              when network access, storage, or other runtime behavior is required.
+            </p>
+            <p>
+              Each product owns its technical guarantees, version, and release cycle. The Hub
+              provides discovery and high-level disclosure without forcing projects into one
+              runtime, plugin system, or ecosystem version.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tinted" aria-labelledby="principles-title">
+        <div class="container">
+          <div class="section-heading measure">
+            <p class="eyebrow">Core principles</p>
+            <h2 id="principles-title">Practical boundaries people can inspect</h2>
+          </div>
+          <div class="principle-grid">
+            <article class="principle-card">
+              <h3>Local-first where practical</h3>
+              <p>Prefer on-device processing when it meaningfully reduces unnecessary exposure.</p>
+            </article>
+            <article class="principle-card">
+              <h3>Minimal unnecessary data exposure</h3>
+              <p>Request, transmit, and retain only what a product actually needs.</p>
+            </article>
+            <article class="principle-card">
+              <h3>Transparent network behavior</h3>
+              <p>Explain when requests occur and what purpose they serve.</p>
+            </article>
+            <article class="principle-card">
+              <h3>Privacy-aware defaults</h3>
+              <p>Favor lower-exposure behavior by default where it is technically appropriate.</p>
+            </article>
+            <article class="principle-card">
+              <h3>Auditable implementation</h3>
+              <p>Keep source and dependencies understandable where practical.</p>
+            </article>
+            <article class="principle-card">
+              <h3>Traceable deployment</h3>
+              <p>Make official web deployment provenance visible where practical.</p>
+            </article>
+          </div>
+          <p class="section-action"><a href="/principles/">Explore all principles</a></p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="products-title">
+        <div class="container">
+          <div class="section-heading measure">
             <p class="eyebrow">Products</p>
-            <h2 id="products-title">Independent applications</h2>
+            <h2 id="products-title">Software for end users</h2>
+            <p>Each application is maintained and released independently.</p>
           </div>
           <div class="card-grid">
             <article class="card">
-              <div class="card-meta">
-                <span>Browser application</span>
-                <span class="status status-stable">Stable</span>
+              <div class="badge-row">
+                <span class="badge">Browser application</span>
+                <span class="badge badge-status">Stable</span>
               </div>
-              <h3>Secure Tools Web Utilities</h3>
-              <p>PDF, image, metadata, and privacy utilities for the browser.</p>
+              <h3><a href="/products/web-utilities/">Secure Tools Web Utilities</a></h3>
+              <p>Local browser workflows for supported PDF, image, metadata, and privacy tasks.</p>
+              <a class="card-link" href="/products/web-utilities/">View product</a>
             </article>
             <article class="card">
-              <div class="card-meta">
-                <span>Desktop application</span>
-                <span class="status">In development</span>
+              <div class="badge-row">
+                <span class="badge">Desktop application</span>
+                <span class="badge badge-status">In development</span>
               </div>
-              <h3>Secure Desktop Pet</h3>
-              <p>A desktop companion developed as its own application and release.</p>
+              <h3><a href="/products/desktop-pet/">Secure Desktop Pet</a></h3>
+              <p>A local desktop companion developed outside the browser utilities runtime.</p>
+              <a class="card-link" href="/products/desktop-pet/">View product</a>
             </article>
             <article class="card">
-              <div class="card-meta">
-                <span>Local AI application</span>
-                <span class="status">Planned / Experimental</span>
+              <div class="badge-row">
+                <span class="badge">Local AI application</span>
+                <span class="badge badge-status">Planned</span>
               </div>
-              <h3>Secure Local AI</h3>
-              <p>Exploration of local-first interactions with AI models.</p>
+              <h3><a href="/products/local-ai/">Secure Local AI</a></h3>
+              <p>A planned category whose processing, model, and network boundaries are not finalized.</p>
+              <a class="card-link" href="/products/local-ai/">View product</a>
             </article>
           </div>
+          <p class="section-action"><a href="/products/">View all products</a></p>
         </div>
       </section>
 
-      <section id="libraries" class="section" aria-labelledby="libraries-title">
-        <div class="container narrow-grid">
+      <section class="section section-tinted" aria-labelledby="libraries-title">
+        <div class="container split-layout">
           <div class="section-heading">
             <p class="eyebrow">Libraries</p>
-            <h2 id="libraries-title">Shared building blocks</h2>
+            <h2 id="libraries-title">Reusable technical components</h2>
+            <p>Libraries support products without becoming end-user applications.</p>
           </div>
-          <article class="library">
-            <p class="label">Reusable library</p>
-            <h3>Secure Metadata</h3>
-            <p>
-              A reusable software component for metadata-related capabilities. It is a
-              library for other projects, not an end-user application.
-            </p>
+          <article class="card featured-card">
+            <div class="badge-row">
+              <span class="badge">Library</span>
+              <span class="badge badge-status">v0.1.1</span>
+            </div>
+            <h3><a href="/libraries/secure-metadata/">Secure Metadata</a></h3>
+            <p>Deterministic, local metadata inspection, cleaning, and verification for supported image formats.</p>
+            <a class="card-link" href="/libraries/secure-metadata/">View library</a>
           </article>
         </div>
       </section>
 
-      <section id="project" class="section project" aria-labelledby="project-title">
-        <div class="container measure">
-          <p class="eyebrow">Project</p>
-          <h2 id="project-title">One catalog, independent releases</h2>
-          <p>
-            The Hub provides shared navigation and documentation. Each product and library
-            retains its own repository, lifecycle, and versioning; there is no global Secure
-            Tools ecosystem version.
-          </p>
+      <section class="section" aria-labelledby="privacy-title">
+        <div class="container callout">
+          <div>
+            <p class="eyebrow">Privacy disclosure</p>
+            <h2 id="privacy-title">One ecosystem does not mean one universal guarantee.</h2>
+          </div>
+          <div class="prose">
+            <p>
+              Browser tools, desktop applications, local AI runtimes, and libraries have
+              different processing and network requirements. Product-specific disclosures take
+              precedence over ecosystem-level principles.
+            </p>
+            <a class="text-link" href="/principles/privacy/">Understand the ecosystem privacy model</a>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>Secure Tools Project Hub — foundation in progress.</p>
+        <p>Secure Tools Project Hub</p>
         <nav aria-label="Project links">
           <ul class="footer-links">
             <li><a href="https://github.com/SecureToolsProject">GitHub organization</a></li>
-            <li><a href="https://github.com/SecureToolsProject/hub">Source repository</a></li>
-            <li><a href="#principles">Privacy and principles</a></li>
+            <li><a href="https://github.com/SecureToolsProject/hub">Hub source</a></li>
+            <li><a href="/principles/">Principles</a></li>
+            <li><a href="https://github.com/SecureToolsProject/hub/blob/main/docs/deployment.md">Deployment transparency</a></li>
           </ul>
         </nav>
       </div>
