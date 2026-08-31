@@ -44,10 +44,11 @@ of the circular CSS brand mark used by Web Utilities. The 1200×630 social previ
 specifically for the Hub and uses its catalog language and visual system; it is not a copy of
 the Web Utilities social image.
 
-Open Graph image metadata uses the current Cloudflare Pages validation origin only so social
-crawlers can resolve an absolute asset URL. The Hub intentionally omits canonical and `og:url`
-metadata until a separately reviewed production-domain migration establishes the permanent
-origin.
+The social preview asset is ready, but host-dependent `og:image` and `twitter:image` metadata
+is intentionally deferred until a separately reviewed production-domain migration establishes
+the permanent Hub origin. Canonical and `og:url` metadata is deferred for the same reason. This
+avoids coupling the public identity to a temporary validation hostname or claiming
+`securetools.app` before migration.
 
 ## Product disclosure contract
 
