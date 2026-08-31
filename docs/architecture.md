@@ -31,6 +31,24 @@ The Hub intentionally has no plugin framework. Projects integrate through docume
 and shared principles rather than executable plugins or a common application shell. This
 keeps the catalog operationally separate from the software it describes.
 
+## Visual identity and asset provenance
+
+The public `SecureToolsProject/Secure_Tools` repository is the visual reference for the Hub's
+system-first typography, warm neutral surfaces, green accent and signal mark, blue keyboard
+focus treatment, spacing scale, borders, radii, and light/dark color behavior. The Hub applies
+those shared cues to an editorial catalog rather than copying tool-specific application UI.
+
+All Hub assets are served locally from `public/assets/`; no font, image, icon, or stylesheet is
+loaded from the reference project at runtime. The SVG favicon is a Hub-owned vector adaptation
+of the circular CSS brand mark used by Web Utilities. The 1200×630 social preview was generated
+specifically for the Hub and uses its catalog language and visual system; it is not a copy of
+the Web Utilities social image.
+
+Open Graph image metadata uses the current Cloudflare Pages validation origin only so social
+crawlers can resolve an absolute asset URL. The Hub intentionally omits canonical and `og:url`
+metadata until a separately reviewed production-domain migration establishes the permanent
+origin.
+
 ## Product disclosure contract
 
 The Hub uses a consistent, human-readable disclosure contract for products and libraries:
