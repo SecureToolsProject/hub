@@ -35,6 +35,10 @@ jobs:
           required_files=(
             public/index.html
             public/404.html
+            public/_headers
+            public/_redirects
+            public/robots.txt
+            public/sitemap.xml
           )
 
           for file in "${required_files[@]}"; do
@@ -59,6 +63,9 @@ jobs:
               exit 1
             fi
           done
+
+          python scripts/validate-h3-url-map.py
+          python scripts/validate-h3-hub-cutover.py
 
           echo "Validated static deployment output: public/"
 
