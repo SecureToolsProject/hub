@@ -41,9 +41,9 @@ permissions.
 
 ## Current validation deployment
 
-The current deployment target is the Cloudflare Pages-managed `secure-tools-hub.pages.dev`
-site. This endpoint is for validating the Hub deployment path and does not mean that the Hub
-has become the Secure Tools production site.
+The current deployment target is the Cloudflare Pages-managed
+`https://secure-tools-hub-53i.pages.dev` site. This endpoint is for validating the Hub
+deployment path and does not mean that the Hub has become the Secure Tools production site.
 
 ## Future production domain
 
@@ -53,3 +53,20 @@ perform the future production migration.
 
 Any production domain migration and related redirects must be handled as a separate,
 explicitly reviewed milestone.
+
+## Prepared H3.5 deployment contract
+
+The unmerged H3.4B branch prepares static `public/_headers` and `public/_redirects`
+artifacts. The hostname-specific header rules keep the stable and immutable
+`*.secure-tools-hub-53i.pages.dev` aliases non-indexable without applying noindex to the
+future custom domain. The redirects contain only the 18 explicit H3.1 legacy Web Utilities
+paths and preserve each path on `https://tools.securetools.app`; the Hub root and all Hub
+routes are excluded.
+
+Cloudflare Pages path redirects do not implement the future `www → apex` domain redirect.
+That change requires a Cloudflare zone/account-level Redirect Rule or Bulk Redirect plus
+proxied DNS during the coordinated H3.5 window. The exact activation and rollback order is
+documented in [the H3.5 cutover runbook](./migrations/h3.5-cutover-runbook.md).
+
+The H3.4B pull request does not attach a custom domain, change DNS, activate a `www` rule,
+modify Search Console, or deploy from its feature branch.

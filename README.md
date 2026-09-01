@@ -21,6 +21,8 @@ validation target.
 - [Architecture](docs/architecture.md)
 - [Privacy model](docs/privacy-model.md)
 - [Deployment transparency](docs/deployment.md)
+- [Search metadata](docs/seo.md)
+- [H3.5 cutover runbook](docs/migrations/h3.5-cutover-runbook.md)
 - [H2.2 quality assurance](docs/h2.2-qa.md)
 
 The static site can be previewed by serving `public/` with any local static file server.

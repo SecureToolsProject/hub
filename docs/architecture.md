@@ -44,11 +44,11 @@ of the circular CSS brand mark used by Web Utilities. The 1200×630 social previ
 specifically for the Hub and uses its catalog language and visual system; it is not a copy of
 the Web Utilities social image.
 
-The social preview asset is ready, but host-dependent `og:image` and `twitter:image` metadata
-is intentionally deferred until a separately reviewed production-domain migration establishes
-the permanent Hub origin. Canonical and `og:url` metadata is deferred for the same reason. This
-avoids coupling the public identity to a temporary validation hostname or claiming
-`securetools.app` before migration.
+H3.4B prepares the reviewed social preview at its final absolute
+`https://securetools.app/assets/brand/social-preview.png` URL together with self-referencing
+Hub canonical and `og:url` metadata. These source changes remain inactive while the H3.4B
+pull request is unmerged. Pages validation aliases are covered by hostname-specific noindex
+headers so they do not become alternate public identities after coordinated H3.5 activation.
 
 ## Product disclosure contract
 
