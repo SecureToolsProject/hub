@@ -12,6 +12,7 @@ from urllib.parse import urlsplit
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 MAP_PATH = REPOSITORY_ROOT / "docs" / "migrations" / "h3-url-map.csv"
 PUBLIC_ROOT = REPOSITORY_ROOT / "public"
+REDIRECTS_PATH = PUBLIC_ROOT / "_redirects"
 EXPECTED_FIELDS = ["old_url", "new_url", "status", "reason"]
 
 
@@ -35,6 +36,7 @@ def main() -> int:
     redirect_count = 0
     root_count = 0
     current_hub_routes = hub_routes()
+    expected_redirects: dict[str, str] = {}
 
     for line_number, row in enumerate(rows, start=2):
         old_url = row.get("old_url", "")
@@ -73,9 +75,57 @@ def main() -> int:
             errors.append(f"line {line_number}: redirect target does not preserve {old.path}")
         if old.path in current_hub_routes:
             errors.append(f"line {line_number}: legacy redirect collides with Hub route {old.path}")
+        expected_redirects[old.path] = new_url
 
     if root_count != 1:
         errors.append(f"expected one apex root reservation; found {root_count}")
+    if redirect_count != 18:
+        errors.append(f"expected 18 redirect inventory rows; found {redirect_count}")
+
+    actual_redirects: dict[str, str] = {}
+    if not REDIRECTS_PATH.is_file():
+        errors.append("public/_redirects is missing")
+    else:
+        for line_number, raw_line in enumerate(
+            REDIRECTS_PATH.read_text(encoding="utf-8").splitlines(), start=1
+        ):
+            line = raw_line.strip()
+            if not line or line.startswith("#"):
+                continue
+            fields = line.split()
+            if len(fields) != 3:
+                errors.append(f"_redirects line {line_number}: expected source destination status")
+                continue
+            source, destination, redirect_status = fields
+            target = urlsplit(destination)
+            if source in actual_redirects:
+                errors.append(f"_redirects line {line_number}: duplicate source {source}")
+            if "*" in source or ":" in source:
+                errors.append(f"_redirects line {line_number}: wildcard or placeholder is not allowed")
+            if source == "/":
+                errors.append("_redirects must not redirect the Hub root")
+            if source in current_hub_routes:
+                errors.append(f"_redirects line {line_number}: Hub route collision {source}")
+            if redirect_status != "301":
+                errors.append(f"_redirects line {line_number}: status must be 301")
+            if target.scheme != "https" or target.netloc != "tools.securetools.app":
+                errors.append(f"_redirects line {line_number}: target host must be tools.securetools.app")
+            if source != target.path:
+                errors.append(f"_redirects line {line_number}: target must preserve path {source}")
+            actual_redirects[source] = destination
+
+    if actual_redirects != expected_redirects:
+        missing = sorted(expected_redirects.keys() - actual_redirects.keys())
+        unexpected = sorted(actual_redirects.keys() - expected_redirects.keys())
+        mismatched = sorted(
+            source
+            for source in expected_redirects.keys() & actual_redirects.keys()
+            if expected_redirects[source] != actual_redirects[source]
+        )
+        errors.append(
+            "public/_redirects does not exactly match h3-url-map.csv "
+            f"(missing={missing}, unexpected={unexpected}, mismatched={mismatched})"
+        )
 
     if errors:
         for error in errors:
@@ -86,6 +136,7 @@ def main() -> int:
         f"Validated {len(rows)} inventory rows: "
         f"{redirect_count} redirects and {root_count} Hub-root no-redirect reservation."
     )
+    print(f"Validated {len(actual_redirects)} exact Cloudflare Pages redirect rules.")
     print(f"Checked collisions against {len(current_hub_routes)} current Hub routes.")
     return 0
 
