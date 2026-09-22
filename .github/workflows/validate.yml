@@ -1,0 +1,27 @@
+name: Validate Hub
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate static Hub
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout source
+        # actions/checkout v6.0.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+
+      - name: Validate H3 migration contracts
+        run: |
+          set -euo pipefail
+          python scripts/validate-h3-url-map.py
+          python scripts/validate-h3-hub-cutover.py

@@ -158,3 +158,15 @@ Every gate requires recorded evidence and an explicit go/no-go decision. A failu
 5. **H3.6 — Search Migration Monitoring:** submit host-specific sitemaps and monitor indexing, redirects, availability, and rollback signals.
 
 No later phase is authorized by this document alone.
+
+## H3.4B preparation
+
+[Issue #14](https://github.com/SecureToolsProject/hub/issues/14) prepares the Hub-owned H3.5
+artifacts on an unmerged branch: final Hub metadata, sitemap and robots files,
+hostname-specific Pages-alias noindex headers, and the 18 explicit redirects derived from this
+inventory. The executable sequence and rollback requirements are in
+[h3.5-cutover-runbook.md](./h3.5-cutover-runbook.md).
+
+These files do not authorize or perform a merge, deployment, apex or `www` DNS change,
+custom-domain attachment, zone redirect, Search Console operation, or Secure_Tools PR #73
+merge. H3.5 must coordinate those operations only after all preflight gates pass.
