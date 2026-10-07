@@ -25,3 +25,4 @@ jobs:
           set -euo pipefail
           python scripts/validate-h3-url-map.py
           python scripts/validate-h3-hub-cutover.py
+          python -m unittest discover -s scripts -p "test_*.py"

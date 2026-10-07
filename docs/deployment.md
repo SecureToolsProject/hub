@@ -39,34 +39,19 @@ workflow's short-lived `GITHUB_TOKEN` so that each upload creates or updates a v
 Deployment record. The workflow has only `contents: read` and `deployments: write`
 permissions.
 
-## Current validation deployment
+## Production identity
 
-The current deployment target is the Cloudflare Pages-managed
-`https://secure-tools-hub-53i.pages.dev` site. This endpoint is for validating the Hub
-deployment path and does not mean that the Hub has become the Secure Tools production site.
+`https://securetools.app/` serves the Hub. `https://tools.securetools.app/` serves Web Utilities.
+The stable and immutable `secure-tools-hub-53i.pages.dev` aliases remain validation endpoints
+with hostname-specific noindex headers. The Hub is a static catalog, not a tool runtime.
 
-## Future production domain
+## Redirect contract
 
-`https://securetools.app` is **not yet connected to this repository**. It remains assigned to
-Secure Tools Web Utilities. This workflow does not change DNS, configure a custom domain, or
-perform the future production migration.
+`public/_redirects` preserves the 18 historical apex source paths and sends them directly
+to root-level canonical Web Utilities URLs with 301 responses. The root and all Hub routes
+remain Hub-owned. Query strings are preserved by Pages redirect behavior.
+The migration CSV documents historical sources, canonical targets, and tools-host 308 support.
+See [the v2.2 link migration](./migrations/v2.2-tool-links.md).
 
-Any production domain migration and related redirects must be handled as a separate,
-explicitly reviewed milestone.
-
-## Prepared H3.5 deployment contract
-
-The unmerged H3.4B branch prepares static `public/_headers` and `public/_redirects`
-artifacts. The hostname-specific header rules keep the stable and immutable
-`*.secure-tools-hub-53i.pages.dev` aliases non-indexable without applying noindex to the
-future custom domain. The redirects contain only the 18 explicit H3.1 legacy Web Utilities
-paths and preserve each path on `https://tools.securetools.app`; the Hub root and all Hub
-routes are excluded.
-
-Cloudflare Pages path redirects do not implement the future `www → apex` domain redirect.
-That change requires a Cloudflare zone/account-level Redirect Rule or Bulk Redirect plus
-proxied DNS during the coordinated H3.5 window. The exact activation and rollback order is
-documented in [the H3.5 cutover runbook](./migrations/h3.5-cutover-runbook.md).
-
-The H3.4B pull request does not attach a custom domain, change DNS, activate a `www` rule,
-modify Search Console, or deploy from its feature branch.
+This content/link migration changes no DNS, custom domains, TLS, zone rules, Search Console,
+or Web Utilities code. The H3.5 runbook is retained as a historical cutover record.

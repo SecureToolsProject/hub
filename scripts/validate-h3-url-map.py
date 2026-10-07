@@ -6,6 +6,7 @@ from __future__ import annotations
 import csv
 import sys
 from pathlib import Path
+from html.parser import HTMLParser
 from urllib.parse import urlsplit
 
 
@@ -14,6 +15,45 @@ MAP_PATH = REPOSITORY_ROOT / "docs" / "migrations" / "h3-url-map.csv"
 PUBLIC_ROOT = REPOSITORY_ROOT / "public"
 REDIRECTS_PATH = PUBLIC_ROOT / "_redirects"
 EXPECTED_FIELDS = ["old_url", "new_url", "status", "reason"]
+
+
+
+# Verified Web Utilities production sitemap: no legacy destination may be published.
+CANONICAL_ROUTES = {
+    "/", "/about/", "/privacy/", "/pdf/", "/pdf/images-to-pdf/",
+    "/pdf/merge/", "/pdf/split/", "/pdf/organize/", "/pdf/to-images/",
+    "/pdf/metadata/", "/pdf/to-text/", "/image/", "/image/converter/",
+    "/image/resize/", "/image/compress/", "/image/metadata/", "/image/to-text/",
+    "/scan/", "/media/",
+}
+UNPUBLISHED_ROUTES = {"/scan/", "/media/"}
+DISCOVERY_ROUTES = {
+    "/image/to-text/", "/image/resize/", "/image/converter/", "/image/compress/",
+    "/image/metadata/", "/pdf/images-to-pdf/", "/pdf/merge/", "/pdf/split/",
+    "/pdf/organize/", "/pdf/to-images/", "/pdf/metadata/", "/pdf/to-text/", "/privacy/",
+}
+LEGACY_ROUTES = {
+    "/about/", "/privacy/", "/tools/pdf/", "/tools/pdf/images-to-pdf/",
+    "/tools/pdf/merge/", "/tools/pdf/split/", "/tools/pdf/organize/",
+    "/tools/pdf/to-images/", "/tools/pdf/metadata/", "/tools/image/",
+    "/tools/image/converter/", "/tools/image/resize/", "/tools/image/compress/",
+    "/tools/image/metadata/", "/tools/privacy/", "/tools/scan/", "/tools/media/",
+    "/tools/image-to-pdf/",
+}
+
+def canonical_path(path: str) -> str:
+    if path == "/tools/image-to-pdf/":
+        return "/pdf/images-to-pdf/"
+    return path.removeprefix("/tools") if path.startswith("/tools/") else path
+
+class PublishedURLs(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.urls = []
+    def handle_starttag(self, tag, attrs):
+        for name, value in attrs:
+            if value and name in {"href", "src", "content"}:
+                self.urls.append(value)
 
 
 def hub_routes() -> set[str]:
@@ -71,8 +111,8 @@ def main() -> int:
             redirect_count += 1
         if new.scheme != "https" or new.netloc != "tools.securetools.app":
             errors.append(f"line {line_number}: redirect target must use https://tools.securetools.app")
-        if old.path != new.path:
-            errors.append(f"line {line_number}: redirect target does not preserve {old.path}")
+        if new.path != canonical_path(old.path) or new.path not in CANONICAL_ROUTES:
+            errors.append(f"line {line_number}: incorrect canonical target for {old.path}")
         if old.path in current_hub_routes:
             errors.append(f"line {line_number}: legacy redirect collides with Hub route {old.path}")
         expected_redirects[old.path] = new_url
@@ -110,8 +150,8 @@ def main() -> int:
                 errors.append(f"_redirects line {line_number}: status must be 301")
             if target.scheme != "https" or target.netloc != "tools.securetools.app":
                 errors.append(f"_redirects line {line_number}: target host must be tools.securetools.app")
-            if source != target.path:
-                errors.append(f"_redirects line {line_number}: target must preserve path {source}")
+            if target.path != canonical_path(source) or target.path not in CANONICAL_ROUTES:
+                errors.append(f"_redirects line {line_number}: incorrect canonical target for {source}")
             actual_redirects[source] = destination
 
     if actual_redirects != expected_redirects:
@@ -126,6 +166,26 @@ def main() -> int:
             "public/_redirects does not exactly match h3-url-map.csv "
             f"(missing={missing}, unexpected={unexpected}, mismatched={mismatched})"
         )
+
+    if set(expected_redirects) != LEGACY_ROUTES:
+        errors.append("legacy source inventory changed")
+    discovered = set()
+    for page in PUBLIC_ROOT.rglob("*.html"):
+        parser = PublishedURLs()
+        parser.feed(page.read_text(encoding="utf-8"))
+        for value in parser.urls:
+            url = urlsplit(value)
+            if url.netloc == "tools.securetools.app":
+                route = url.path or "/"
+                if url.scheme != "https" or route not in CANONICAL_ROUTES:
+                    errors.append(f"{page.name}: non-canonical published tool URL {value}")
+                if route in UNPUBLISHED_ROUTES:
+                    errors.append(f"{page.name}: unavailable tool published {value}")
+                discovered.add(route)
+            elif not url.netloc and url.path.startswith("/tools/"):
+                errors.append(f"{page.name}: legacy tool href {value}")
+    if not DISCOVERY_ROUTES <= discovered:
+        errors.append(f"missing tool discovery: {sorted(DISCOVERY_ROUTES - discovered)}")
 
     if errors:
         for error in errors:

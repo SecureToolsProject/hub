@@ -1,5 +1,9 @@
 # H3.1 — Domain Migration Contract and URL Inventory
 
+> Historical H3 preparation record. The apex now serves the Hub and Web Utilities uses
+> root-level canonical routes. The old same-path destination contract below is superseded
+> by [the verified v2.2 migration](./v2.2-tool-links.md); do not execute this historical runbook.
+
 Status: planning only. Nothing in this document authorizes a DNS, hosting, custom-domain, redirect, metadata, or Search Console change.
 
 Issue: [#12](https://github.com/SecureToolsProject/hub/issues/12)
