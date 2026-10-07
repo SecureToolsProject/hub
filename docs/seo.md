@@ -1,7 +1,7 @@
 # Hub search metadata
 
-Status: H3.4B preparation only. The pull request must remain unmerged until the coordinated
-H3.5 cutover.
+Status: production Hub. The v2.2 link migration updates tool destinations without changing
+Hub canonical metadata, sitemap, robots, or indexing policy.
 
 ## Final canonical identity
 
@@ -29,27 +29,25 @@ https://secure-tools-hub-53i.pages.dev/*
 https://:version.secure-tools-hub-53i.pages.dev/*
 ```
 
-The future `securetools.app` custom domain does not match those patterns and remains
+The production `securetools.app` custom domain does not match those patterns and remains
 indexable. No Worker or Pages Function is required.
 
 ## Legacy path ownership
 
 `public/_redirects` contains exactly the 18 explicit 301 mappings in
-`docs/migrations/h3-url-map.csv`. Every destination is the same path on
-`https://tools.securetools.app`. The Hub root and all Hub routes are excluded; no wildcard
+`docs/migrations/h3-url-map.csv`. Every destination is the root-level canonical path on
+`https://tools.securetools.app`, including the historical image-to-PDF alias. The Hub root and all Hub routes are excluded; no wildcard
 can swallow future Hub content.
 
-These redirects become reachable on the apex only after H3.5 attaches the custom domain to
-the Hub Pages project. The H3.4B feature branch does not deploy or activate them.
+The apex redirects go directly to canonical tools URLs. Historical `/tools/*` sources are
+retained; destination URLs no longer rely on the tools host's legacy 308 redirects.
 
 ## Validation and search activation
 
 `scripts/validate-h3-hub-cutover.py` checks route metadata, social image dimensions,
 sitemap, robots, and Pages-alias isolation. `scripts/validate-h3-url-map.py` compares the
 redirect artifact directly with the H3.1 inventory and rejects duplicates, wildcards, wrong
-hosts, changed paths, non-301 status, root redirects, and Hub-route collisions.
+hosts, incorrect canonical targets, non-301 status, root redirects, and Hub-route collisions.
 
-Search Console remains unchanged during preparation. After H3.5 HTTP, TLS, canonical, and
-redirect validation, submit the Hub sitemap to the root property and monitor Web Utilities
-through the tools URL-prefix property. Do not use Change of Address for this partial
-migration.
+Search Console and DNS remain unchanged by the v2.2 link migration. Historical activation
+instructions remain in the archived H3.5 runbook.

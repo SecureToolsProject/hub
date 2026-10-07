@@ -9,12 +9,10 @@ Secure Tools products. Products and libraries remain independently maintained an
 
 ## Status
 
-The repository now includes its information architecture, standardized product disclosure
-model, and a production-polished visual system aligned with Secure Tools Web Utilities, but it
-is not released as the production Hub.
-Production migration has not happened: `securetools.app` remains assigned to Secure Tools Web
-Utilities. The configured workflow publishes `main` only to the Cloudflare-managed `pages.dev`
-validation target.
+The Hub is live at `https://securetools.app/`. It discovers independently maintained
+products; Web Utilities is hosted at `https://tools.securetools.app/`.
+GitHub Actions validates and deploys the static `public/` directory to Cloudflare Pages.
+See [the v2.2 link migration](docs/migrations/v2.2-tool-links.md) for canonical tool destinations.
 
 ## Documentation
 
